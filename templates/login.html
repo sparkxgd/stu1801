@@ -8,10 +8,23 @@
         $(function () {
             //点击登录按钮
             $(".bt").click(function () {
-                //要做的事情
-                //获取密码和账号
+                //要做的事情（获取密码和账号）
                 var username = $("#username").val();
-
+                var password = $("#password").val();
+                //提交到后台，进行判断（利用ajax）
+                $.ajax({
+                    type:"POST",
+                    url:"/islogin/",
+                    data:{"username":username,"password":password},
+                    dataType:"json",
+                    success:function (d) {
+                        if(d.code==0){//密码正确
+                            window.location.href="/index/";
+                        }else{//密码不正确或者用户名不存在
+                            alert(d.msg);
+                        }
+                    }
+                });
             })
         });
     </script>
@@ -45,7 +58,7 @@
         }
         .login_item .bt{
             margin-left: 18%;
-            width: 173px;
+            width: 175px;
         }
     </style>
 </head>

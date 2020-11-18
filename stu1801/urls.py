@@ -20,4 +20,6 @@ from stu import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.login),
+    path('islogin/', views.islogin),
+    path('index/', views.index),
 ]
